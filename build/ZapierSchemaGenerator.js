@@ -51,6 +51,9 @@ class ZapierSchemaGenerator {
         if (prop.format === "date-time") {
             transformDate_1.transformDate(fieldSchema, prop, this);
         }
+        else if (prop.allOf) {
+            return transformAllOf_1.transformAllOf(fieldSchema, prop, this);
+        }
         else if (prop.type === "array") {
             return transformItems_1.transformItems(fieldSchema, prop, this);
         }
@@ -59,9 +62,6 @@ class ZapierSchemaGenerator {
         }
         else if (prop.anyOf) {
             return transformAnyOf_1.transformAnyOf(fieldSchema, prop, this);
-        }
-        else if (prop.allOf) {
-            return transformAllOf_1.transformAllOf(fieldSchema, prop, this);
         }
         else if (!prop.type) {
             return null;
